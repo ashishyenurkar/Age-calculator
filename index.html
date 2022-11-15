@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<style>
+    input:hover {
+  background-color: yellow;}
+  #grad1 {
+  height: 500px;
+  background-color: red; 
+  background-image: linear-gradient(red, yellow);
+}
+</style>
+<body class="bg-light" style="background-image:url(bg.webp);">
+    <!--Code start-->                          <!--Bootstrap is used for styling -->
+    <!--container div tag-->
+    <div id="grad1" class="container text-center border border-warning rounded-pill mt-5 bg-primary" style="width:1100px"    >
+    <div class="container" >
+    <!--Heading-->    
+    <h2 class="mt-4 text-light">Age Calculator</h2>
+    <!--Input tags for getting Input From User .-->
+    <h5 class="input text-info" id="e_name">Enter Your Name</h5><br>
+    <input class="text-info" onclick="display1()" type="text" id="name" placeholder="Enter Your Name" onmouseover="border1()"><br><br>
+    <h5 class="text-info" id="e_day">Date</h5><br>
+    <input class="text-info" onclick="display2()"  onmouseover="border2()"  type="text" id="day" placeholder="day"  >
+    <h5 class="text-info" id="e_month">Month</h5><br>
+    <input class="text-info" onclick="display3()" type="text" id="month" placeholder="month"  onmouseover="border3()">
+    <h5 class="text-info" id="e_year">Year</h5><br>
+    <input  class="text-info" onclick="display4()" type="text" id="year" placeholder="year"  onmouseover="border4()"><br>
+    <!--Button for calculating Age -->
+    <button  class="btn btn-success m-2" id="submit" type="button"  onmouseover="button()">Calculate Age</button>
+    <!--output of age calculator-->
+    <h3 class="text-bg-warning text-primary " id="output"></h3>
+    
+    </div>
+    </div>
+    <script>
+        // Taking response from submit button .
+        var submit=document.getElementById("submit");
+        // Add Event Listener for adding click Event .
+        submit.addEventListener("click",Agecalculator);
+
+
+        //Function for action for all event in Age Calculator. 
+        function Agecalculator(){
+            //Input response from User and getting value from Input Tag .
+            var u_Name = document.getElementById("name").value ;
+            var u_day = document.getElementById("day").value ;
+            var u_month = document.getElementById("month").value ;
+            var u_year = document.getElementById("year").value ;
+            var d = new Date(); //Date Function
+            var year = d.getFullYear(); // current Year.
+            var month = d.getMonth(); // current Month .
+            var day = d.getDate(); // current Date
+
+            // user_day and u_month are greater than current
+            if(parseInt(u_day) > day && parseInt (u_month) > month){
+                var d = day + 31 ;
+                var m = month + 12-1 ;
+                var y = year - 1 ;
+                
+                
+            }
+            
+            // user_day and u_month are smaller than current
+
+            if(parseInt(u_day) < day && parseInt(u_month) < month  ){
+                var d = day ;
+                var m = month ;
+                var y = year  ;
+                
+            }
+            //user_day are Greater and u_month are smaller.
+            if( parseInt(u_day) > day && parseInt(u_month) < month){
+                var d = day + 31 ;
+                var m = month - 1 ;
+                var y = year ;
+                
+            }
+            //user month Greater ane User day smaller .
+            if (parseInt(u_day) < day && parseInt(u_month) > month){
+                var d = day ;
+                var m = month + 12;
+                var y = year - 1 ;
+                
+
+
+            }
+            
+            
+            
+           // this for final calculation . 
+            const final_day = d - parseInt(u_day);
+            const final_month = m + 1 - parseInt(u_month);
+            const final_year = y - parseInt(u_year);
+            
+            //output 
+            document.getElementById("output").innerHTML = 
+            "Hello" + " " + u_Name + " !" + "Your Age Is "+ "  " +"=> "+ final_year + "Year"+" "+final_month+" Month "+" "+final_day+"days ." ;
+    }
+    //function for onclick in input tag for name . 
+    function display1(){
+        document.getElementById("name").style.backgroundColor = "#a95679"
+         document.getElementById("name").style.color = "white";
+         document.getElementById("e_name").style.fontSize = "50px"; 
+         
+    }
+    //function for onclick in input tag for day
+    function display2(){
+        document.getElementById("day").style.backgroundColor = "#a95679"
+        document.getElementById("day").style.color = "white";
+        document.getElementById("e_day").style.fontSize = "50px";
+        document.getElementById("e_name").style.fontSize = "20px";  
+
+    }
+    //function for onclick in inuput tag for month . 
+    function display3(){
+        document.getElementById("month").style.backgroundColor = "#a87457"
+        document.getElementById("month").style.color = "white";
+        document.getElementById("e_month").style.fontSize = "50px"; 
+        document.getElementById("e_day").style.fontSize = "20px";
+
+    }
+    // function for onclick in input tag for year .
+    function display4(){
+        document.getElementById("year").style.backgroundColor = "#3384cc"
+        document.getElementById("year").style.color = "white";
+        document.getElementById("e_year").style.fontSize = "50px";
+        document.getElementById("e_month").style.fontSize = "20px";  
+
+    }
+   
+   
+    
+    
+    
+    
+    
+    
+              
+    
+    </script>
+    
+</body>
+<!--Code End-->
+</html>
